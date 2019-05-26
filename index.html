@@ -343,9 +343,9 @@
 			});
 
 			// return only the distinct / unique nodes
-			//sankeyData.nodes = d3.keys(d3.nest()
-					//.key(function (d) { return d.name; })
-					//.map(sankeyData.nodes));
+			sankeyData.nodes = d3.keys(d3.nest()
+					.key(function (d) { return d.name; })
+					.map(sankeyData.nodes));
 
 			// loop through each link replacing the text with its index from node
 			//sankeyData.links.forEach(function (d, i) {
