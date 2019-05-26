@@ -137,8 +137,6 @@
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			console.log('----- Display Tableau_Array_of_Objects -----', Tableau_Array_of_Objects);	// Debug output
 						
-			var uniqEleCount = uniqueElementCnt(Tableau_Array_of_Objects, Ordered_Dimensions);
-						
 			var colorScale = tableau.extensions.settings.get("chartColorScale");//Sunburst Code
 
 			//Sunburst Code
@@ -153,7 +151,6 @@
 			const popupUrl = `https://mantsui.github.io/Ext_D3_Treemap_ConfigDialog`;
 			let defaultPayload = "";
 			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:700, width:500 }).then((closePayload) => {
-				// drawD3chart(); 03.30.19 old code
 				getData_to_D3(); //0 3.30.19 test code
 			}).catch((error) => {
 				switch (error.errorCode) {
@@ -322,9 +319,6 @@
 				}//Looping through the object number of properties (aka: Fields) in object
 				
 				Array_Of_Objects.push(SingleObject);	// Dynamically append object to the array
-				//console.log(' ----- Single Object -----');	// Debug output
-				//console.log(SingleObject);			// Debug output
-				//console.log(Array_Of_Objects);		// Debug output
 			} //Looping through data array of objects.
 			
 			if(Object.keys(Array_Of_Objects[0]).length == 2) {
@@ -332,26 +326,10 @@
 					Array_Of_Objects[index].placeholder = ' ';
 				}
 			}
-			//console.log(' ----- Display Array_Of_Objects ----- ');// Debug output
-			//console.log(Array_Of_Objects);			// Debug output
-			//console.log('Number of properties: ', Object.keys(Array_Of_Objects[0]).length);
 			return Array_Of_Objects;
 		}
-		
 
-		// Function to count the number of unique dimension elements
-		// This is to help design the color contrast
-		function uniqueElementCnt(inputArr, dimensionList){
-			var uniqueList = [];
-			for (var RowIndex = 0; RowIndex < inputArr.length; RowIndex++) {
-				for(var ColIndex = 0; ColIndex < dimensionList.length; ColIndex++) {
-					uniqueList.push(inputArr[RowIndex][dimensionList[ColIndex]]);
-				}
-			}
-			uniqueList = uniqueList.filter(distinct);
-			return uniqueList.length;
-		}
-		
+
 		// Established stepped color scale to help the color constrast of the D3 chart
 		function steppedColorArray(ColorScaleType, uniqueElementCount) {
 			var steppedColorScale = [];
