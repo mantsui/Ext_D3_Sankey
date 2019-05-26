@@ -330,35 +330,17 @@
 			return Array_Of_Objects;
 		}
 
-		function reformatSankeyData(arrayOfObj, Order_Dimension){
+		function reformatSankeyData(arrayOfObj, DimensionOrdered){
 			var sankeyData = {"nodes" : [], "links" : []};
 			
 			arrayOfObj.forEach(function (d) {
-				sankeyData.nodes.push({ "name": d[ Order_Dimension[0] ] });
-				sankeyData.nodes.push({ "name": d[ Order_Dimension[1] ] });
+				sankeyData.nodes.push({ "name": d[ DimensionOrdered[0] ] });
+				sankeyData.nodes.push({ "name": d[ DimensionOrdered[1] ] });
 				//sankeyData.links.push({ "source": d['Product Category'],
 						 //"target": d.Region,
 						 //"value": +d['SUM(Sales)'] });
-				console.log('Debug d elements: ', d);
 			});
 
-			// return only the distinct / unique nodes
-			sankeyData.nodes = d3.keys(d3.nest()
-					.key(function (d) { return d.name; })
-					.map(sankeyData.nodes));
-
-			// loop through each link replacing the text with its index from node
-			//sankeyData.links.forEach(function (d, i) {
-				//sankeyData.links[i].source = sankeyData.nodes.indexOf(sankeyData.links[i].source);
-				//sankeyData.links[i].target = sankeyData.nodes.indexOf(sankeyData.links[i].target);
-			//});
-
-			//now loop through each nodes to make nodes an array of objects
-			// rather than an array of strings
-			//sankeyData.nodes.forEach(function (d, i) {
-				//sankeyData.nodes[i] = { "name": d };
-			//});
-			
 			console.log('Debug sankeyData: ', sankeyData);
 		}
 
