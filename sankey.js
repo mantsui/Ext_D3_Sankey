@@ -1,6 +1,6 @@
 d3.sankey = function() {
   var sankey = {},
-      width = 50,
+      width = 500,
       nodeWidth = 24,
       nodePadding = 8,
       size = [1, 1],
