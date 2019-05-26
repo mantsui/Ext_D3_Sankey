@@ -227,6 +227,7 @@
 
 			// Set the sankey diagram properties
 			var sankey = d3.sankey()
+				.width(width)
 				.nodeWidth(36)
 				.nodePadding(40)
 				.size([width, height]);
