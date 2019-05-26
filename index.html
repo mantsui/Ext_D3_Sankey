@@ -329,6 +329,34 @@
 			return Array_Of_Objects;
 		}
 
+		function reformatSankeyData(arrayOfObj){
+			var sankeyData = {"nodes" : [], "links" : []};
+			
+			arrayOfObj.forEach(function (d) {
+				sankeyData.nodes.push({ "name": d.source });
+				sankeyData.nodes.push({ "name": d.target });
+				sankeyData.links.push({ "source": d.source,
+						 "target": d.target,
+						 "value": +d.value });
+			});
+
+			// return only the distinct / unique nodes
+			sankeyData.nodes = d3.keys(d3.nest()
+					.key(function (d) { return d.name; })
+					.map(sankeyData.nodes));
+
+			// loop through each link replacing the text with its index from node
+			sankeyData.links.forEach(function (d, i) {
+				sankeyData.links[i].source = sankeyData.nodes.indexOf(sankeyData.links[i].source);
+				sankeyData.links[i].target = sankeyData.nodes.indexOf(sankeyData.links[i].target);
+			});
+
+			//now loop through each nodes to make nodes an array of objects
+			// rather than an array of strings
+			sankeyData.nodes.forEach(function (d, i) {
+				sankeyData.nodes[i] = { "name": d };
+			});
+		}
 
 		// Established stepped color scale to help the color constrast of the D3 chart
 		function steppedColorArray(ColorScaleType, uniqueElementCount) {
