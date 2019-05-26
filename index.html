@@ -128,7 +128,8 @@
 			}
 		}
 		console.log('----- Ordered_Dimensions -----', Ordered_Dimensions);	// Debug output
-			
+		Ordered_Dimensions = ['Product Category', 'Region'];
+
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
 			var worksheetData = sumdata.data;			
 			console.log('----- sumdata.data -----', worksheetData);
@@ -137,7 +138,7 @@
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			console.log('----- Display Tableau_Array_of_Objects -----', Tableau_Array_of_Objects);	// Debug output
 						
-			reformatSankeyData(Tableau_Array_of_Objects);
+			reformatSankeyData(Tableau_Array_of_Objects, Ordered_Dimensions);
 			
 			//Sunburst Code
 			//draw_D3(TableauTreeData, Ordered_Dimensions, uniqEleCount, colorScale);
@@ -329,12 +330,12 @@
 			return Array_Of_Objects;
 		}
 
-		function reformatSankeyData(arrayOfObj){
+		function reformatSankeyData(arrayOfObj, Order_Dimension){
 			var sankeyData = {"nodes" : [], "links" : []};
 			
 			arrayOfObj.forEach(function (d) {
-				//sankeyData.nodes.push({ "name": d['Product Category'] });
-				//sankeyData.nodes.push({ "name": d.Region });
+				sankeyData.nodes.push({ "name": d[ Order_Dimension[0] ] });
+				sankeyData.nodes.push({ "name": d[ Order_Dimension[1] ] });
 				//sankeyData.links.push({ "source": d['Product Category'],
 						 //"target": d.Region,
 						 //"value": +d['SUM(Sales)'] });
@@ -358,7 +359,7 @@
 				//sankeyData.nodes[i] = { "name": d };
 			//});
 			
-			//console.log('Debug sankeyData: ', sankeyData);
+			console.log('Debug sankeyData: ', sankeyData);
 		}
 
 		// Established stepped color scale to help the color constrast of the D3 chart
