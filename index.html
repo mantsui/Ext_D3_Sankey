@@ -137,8 +137,8 @@
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			console.log('----- Display Tableau_Array_of_Objects -----', Tableau_Array_of_Objects);	// Debug output
 						
-			var colorScale = tableau.extensions.settings.get("chartColorScale");//Sunburst Code
-
+			reformatSankeyData(Tableau_Array_of_Objects);
+			
 			//Sunburst Code
 			//draw_D3(TableauTreeData, Ordered_Dimensions, uniqEleCount, colorScale);
 			draw_D3();
@@ -333,11 +333,11 @@
 			var sankeyData = {"nodes" : [], "links" : []};
 			
 			arrayOfObj.forEach(function (d) {
-				sankeyData.nodes.push({ "name": d.source });
-				sankeyData.nodes.push({ "name": d.target });
-				sankeyData.links.push({ "source": d.source,
-						 "target": d.target,
-						 "value": +d.value });
+				sankeyData.nodes.push({ "name": d.['Product Category'] });
+				sankeyData.nodes.push({ "name": d.Region });
+				sankeyData.links.push({ "source": d.['Product Category'],
+						 "target": d.Region,
+						 "value": +d.['SUM(Sales)'] });
 			});
 
 			// return only the distinct / unique nodes
@@ -356,6 +356,8 @@
 			sankeyData.nodes.forEach(function (d, i) {
 				sankeyData.nodes[i] = { "name": d };
 			});
+			
+			console.log('Debug sankeyData: ', sankeyData);
 		}
 
 		// Established stepped color scale to help the color constrast of the D3 chart
