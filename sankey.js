@@ -1,12 +1,18 @@
 d3.sankey = function() {
   var sankey = {},
-      //width = 680,
+      width = 0,
       nodeWidth = 24,
       nodePadding = 8,
       size = [1, 1],
       nodes = [],
       links = [];
 
+  sankey.width = function(_) {
+    if (!arguments.length) return width;
+    width = +_;
+    return sankey;
+  };
+  
   sankey.nodeWidth = function(_) {
     if (!arguments.length) return nodeWidth;
     nodeWidth = +_;
