@@ -333,11 +333,11 @@
 			var sankeyData = {"nodes" : [], "links" : []};
 			
 			arrayOfObj.forEach(function (d) {
-				sankeyData.nodes.push({ "name": d.['Product Category'] });
+				sankeyData.nodes.push({ "name": d['Product Category'] });
 				sankeyData.nodes.push({ "name": d.Region });
-				sankeyData.links.push({ "source": d.['Product Category'],
+				sankeyData.links.push({ "source": d['Product Category'],
 						 "target": d.Region,
-						 "value": +d.['SUM(Sales)'] });
+						 "value": +d['SUM(Sales)'] });
 			});
 
 			// return only the distinct / unique nodes
