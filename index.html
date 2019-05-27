@@ -88,7 +88,6 @@
 		
 		var debugTimestamp = new Date();
 		var sheetName = tableau.extensions.settings.get("worksheet");
-		//var sheetName = worksheets[0].name; // 04.08.19 New code
 		console.log('Debug sheetName ', debugTimestamp.toGMTString(), ' ',sheetName); 
 
 		dict_Settings = tableau.extensions.settings.getAll();
@@ -172,13 +171,13 @@
 
 			var dataInput = {
 					"nodes":[
-						{"node":0,"name":"East"},
-						{"node":1,"name":"West"},
-						{"node":2,"name":"Central"},
-						{"node":3,"name":"South"},
-						{"node":4,"name":"Office Supplies"},
-						{"node":5,"name":"Furniture"},
-						{"node":6,"name":"Technology"}
+						{"name":"East"},
+						{"name":"West"},
+						{"name":"Central"},
+						{"name":"South"},
+						{"name":"Office Supplies"},
+						{"name":"Furniture"},
+						{"name":"Technology"}
 					],
 					"links":[
 						{"source":4,"target":0,"value":211784},
