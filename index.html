@@ -338,8 +338,10 @@
 					var objElement = { "name": d[ DimensionOrdered[index] ], 
 							   "dimension": DimensionOrdered[index] };
 					
-					console.log('Loop testing: ', containsObject(objElement, sankeyData.nodes) );
-					sankeyData.nodes.push(objElement);
+					//console.log('Loop testing: ', containsObject(objElement, sankeyData.nodes) );
+					if( !containsObject(objElement, sankeyData.nodes) ) {
+						sankeyData.nodes.push(objElement);
+					}
 					//console.log('Debug nodes: ', sankeyData.nodes);
 					//if( !sankeyData.nodes.includes({ "name": d[ DimensionOrdered[index] ], "dimension": DimensionOrdered[index] } )) {
 					/*sankeyData.nodes.push({ "name": d[ DimensionOrdered[index] ],
@@ -360,8 +362,6 @@
 		function containsObject(obj, list) {
 			var i;
 			for (i = 0; i < list.length; i++) {
-				console.log('Looping list', i, ': ', list[i]);
-				console.log('obj ', obj);
 				if (isEquivalent(list[i], obj)) {
 					return true;
 				}
