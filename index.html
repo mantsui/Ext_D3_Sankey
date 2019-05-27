@@ -347,11 +347,16 @@
 			});
 			
 			arrayOfObj.forEach(function (d) {
-				console.log('looping :', d);
-				console.log('Dimension: ', DimensionOrdered[0]);
-				console.log('Element', d[ DimensionOrdered[0] ]);
+				//console.log('looping :', d);
+				//console.log('Dimension: ', DimensionOrdered[0]);
+				//console.log('Element', d[ DimensionOrdered[0] ]);
 				
-				console.log('link pos testing: ', dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes) );
+				//console.log('link pos testing: ', dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes) );
+				
+				sankeyData.links.push({ "source": dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes),
+						 "target": dimension_element_inArray(DimensionOrdered[1], d[ DimensionOrdered[1] ], sankeyData.nodes),
+						 "value": +d['SUM(Sales)'] });				
+				
 			});
 
 			console.log('Debug sankeyData: ', sankeyData);
@@ -360,8 +365,6 @@
 		function dimension_element_inArray(inputDimension, inputElement, inputArray) {
 			var position = -1;
 			for(var index = 0; index < inputArray.length; index++) {
-				//console.log('inputArray[index].dimension :', inputArray[index].dimension);
-				//console.log('inputArray[index].name : ', inputArray[index].name);
 				if(inputArray[index].dimension == inputDimension && inputArray[index].name == inputElement) {
 					position = index;
 				}
