@@ -127,7 +127,7 @@
 			}
 		}
 		console.log('----- Ordered_Dimensions -----', Ordered_Dimensions);	// Debug output
-		Ordered_Dimensions = ['Product Category', 'Region'];
+		Ordered_Dimensions = ['Product Sub-Category', 'Product Category', 'Region'];
 
 		worksheet.getSummaryDataAsync().then(function (sumdata) {
 			var worksheetData = sumdata.data;			
@@ -139,6 +139,7 @@
 						
 			var sankeyData = reformatSankeyData(Tableau_Array_of_Objects, Ordered_Dimensions);
 			// Reformat sankeyData for D3
+			console.log('Debug sankeyData: ', sankeyData);
 			
 			//Sunburst Code
 			//draw_D3(TableauTreeData, Ordered_Dimensions, uniqEleCount, colorScale);
@@ -317,16 +318,21 @@
 
 			// Create sankey links
 			arrayOfObj.forEach(function (d) {
-				/*sankeyData.links.push({ "source": dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes),
+				sankeyData.links.push({ "source": dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes),
 						 "target": dimension_element_inArray(DimensionOrdered[1], d[ DimensionOrdered[1] ], sankeyData.nodes),
-						 "value": +d['SUM(Sales)'] });*/
-				for(var level_Index = 1; level_Index < DimensionOrdered.length; level_Index++) {
+						 "value": +d['SUM(Sales)'] });
+
+
+				sankeyData.links.push({ "source": dimension_element_inArray(DimensionOrdered[1], d[ DimensionOrdered[1] ], sankeyData.nodes),
+						 "target": dimension_element_inArray(DimensionOrdered[2], d[ DimensionOrdered[2] ], sankeyData.nodes),
+						 "value": +d['SUM(Sales)'] });
+				/*for(var level_Index = 1; level_Index < DimensionOrdered.length; level_Index++) {
 					var sourceIndex = level_Index - 1;
 					var targetIndex = level_Index;
 					sankeyData.links.push({ "source": dimension_element_inArray(DimensionOrdered[sourceIndex], d[ DimensionOrdered[sourceIndex] ], sankeyData.nodes),
 							 "target": dimension_element_inArray(DimensionOrdered[targetIndex], d[ DimensionOrdered[targetIndex] ], sankeyData.nodes),
 							 "value": +d['SUM(Sales)'] });
-				}
+				}*/
 			});
 
 			return sankeyData;
