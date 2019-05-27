@@ -335,7 +335,8 @@
 			
 			arrayOfObj.forEach(function (d) {
 				for(var index = 0; index < DimensionOrdered.length; index++) {
-					var objElement = { "name": d[ DimensionOrdered[index] ], 
+					var objElement = { "node": index,
+							   "name": d[ DimensionOrdered[index] ], 
 							   "dimension": DimensionOrdered[index] };
 					
 					if( !containsObject(objElement, sankeyData.nodes) ) {
