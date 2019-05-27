@@ -331,7 +331,6 @@
 
 		function reformatSankeyData(arrayOfObj, DimensionOrdered){
 			var sankeyData = {"nodes" : [], "links" : []};
-			var nodeIndex = 0;
 			
 			arrayOfObj.forEach(function (d) {
 				for(var index = 0; index < DimensionOrdered.length; index++) {
@@ -340,7 +339,6 @@
 					
 					if( !containsObject(objElement, sankeyData.nodes) ) {
 						sankeyData.nodes.push(objElement);
-						nodeIndex++;
 					}
 					//sankeyData.links.push({ "source": d['Product Category'],
 							 //"target": d.Region,
@@ -352,11 +350,23 @@
 				console.log('looping :', d);
 				console.log('Dimension: ', DimensionOrdered[0]);
 				console.log('Element', d[ DimensionOrdered[0] ]);
+				
+				console.log('link pos testing: ', dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes) );
 			});
 
 			console.log('Debug sankeyData: ', sankeyData);
 		}
 
+		function dimension_element_inArray(inputDimension, inputElement, inputArray) {
+			var position = -1;
+			for(var index = 0; index < inputArray; index++) {
+				if(inputArray[index].dimension == inputDimension && inputArray[index].name == inputElement) {
+					position = index;
+				}
+			}
+			return position;
+		}
+		
 		// Helper function to check if object is already in an array
 		function containsObject(obj, list) {
 			var i;
