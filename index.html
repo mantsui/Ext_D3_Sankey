@@ -321,9 +321,6 @@
 				var sourceNum = dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes);
 				var targetNum = dimension_element_inArray(DimensionOrdered[1], d[ DimensionOrdered[1] ], sankeyData.nodes);
 				
-				/*sankeyData.links.push({ "source": sourceNum,
-							"target": targetNum,
-							"value": +d['SUM(Sales)'] });*/
 				if( source_target_inArray(sourceNum, targetNum, sankeyData.links) == -1 ){
 					sankeyData.links.push({ "source": sourceNum,
 								"target": targetNum,
@@ -335,22 +332,25 @@
 						}
 					}
 				}
-				/*sankeyData.links.push({ "source": dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes),
-						 "target": dimension_element_inArray(DimensionOrdered[1], d[ DimensionOrdered[1] ], sankeyData.nodes),
-						 "value": +d['SUM(Sales)'] });*/
 
+				var sourceNum2 = dimension_element_inArray(DimensionOrdered[1], d[ DimensionOrdered[1] ], sankeyData.nodes);
+				var targetNum2 = dimension_element_inArray(DimensionOrdered[2], d[ DimensionOrdered[2] ], sankeyData.nodes);
+				if( source_target_inArray(sourceNum2, targetNum2, sankeyData.links) == -1 ){
+					sankeyData.links.push({ "source": sourceNum2,
+								"target": targetNum2,
+								"value": +d['SUM(Sales)'] });
+				} else {
+					for(var index = 0; index < sankeyData.links.length; index++) {
+						if( sankeyData.links[index].source == sourceNum2 && sankeyData.links[index].target == targetNum2) {
+							sankeyData.links[index].value += d['SUM(Sales)'];
+						}
+					}
+				}
 
-				sankeyData.links.push({ "source": dimension_element_inArray(DimensionOrdered[1], d[ DimensionOrdered[1] ], sankeyData.nodes),
+				/*sankeyData.links.push({ "source": dimension_element_inArray(DimensionOrdered[1], d[ DimensionOrdered[1] ], sankeyData.nodes),
 						 "target": dimension_element_inArray(DimensionOrdered[2], d[ DimensionOrdered[2] ], sankeyData.nodes),
-						 "value": +d['SUM(Sales)'] });
+						 "value": +d['SUM(Sales)'] });*/
 				
-				/*for(var level_Index = 1; level_Index < DimensionOrdered.length; level_Index++) {
-					var sourceIndex = level_Index - 1;
-					var targetIndex = level_Index;
-					sankeyData.links.push({ "source": dimension_element_inArray(DimensionOrdered[sourceIndex], d[ DimensionOrdered[sourceIndex] ], sankeyData.nodes),
-							 "target": dimension_element_inArray(DimensionOrdered[targetIndex], d[ DimensionOrdered[targetIndex] ], sankeyData.nodes),
-							 "value": +d['SUM(Sales)'] });
-				}*/
 			});
 
 			return sankeyData;
