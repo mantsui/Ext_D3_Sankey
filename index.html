@@ -335,12 +335,15 @@
 			
 			arrayOfObj.forEach(function (d) {
 				for(var index = 0; index < DimensionOrdered.length; index++) {
+					var objElement = { "name": d[ DimensionOrdered[index] ], 
+							   "dimension": DimensionOrdered[index] };
 					
-					console.log('Loop testing: ', sankeyData.nodes.includes({ "name": d[ DimensionOrdered[index] ], "dimension": DimensionOrdered[index] } ));
+					console.log('Loop testing: ', sankeyData.nodes.indexOf(objElement) );
+					sankeyData.nodes.push(objElement);
 					//if( !sankeyData.nodes.includes({ "name": d[ DimensionOrdered[index] ], "dimension": DimensionOrdered[index] } )) {
-					sankeyData.nodes.push({ "name": d[ DimensionOrdered[index] ],
+					/*sankeyData.nodes.push({ "name": d[ DimensionOrdered[index] ],
 							        "dimension": DimensionOrdered[index]
-							      });
+							      });*/
 					//}
 					//sankeyData.nodes.push({ "dimension": DimensionOrdered[index] });
 					//sankeyData.links.push({ "source": d['Product Category'],
