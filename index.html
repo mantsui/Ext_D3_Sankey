@@ -170,35 +170,6 @@
 			var divWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-			/*var dataInput = {
-					"nodes":[
-						{"name":"East"},
-						{"name":"West"},
-						{"name":"Central"},
-						{"name":"South"},
-						{"name":"Office Supplies"},
-						{"name":"Furniture"},
-						{"name":"Technology"}
-					],
-					"links":[
-						{"source":4,"target":0,"value":211784},
-						{"source":5,"target":0,"value":196332},
-						{"source":6,"target":0,"value":184055},
-
-						{"source":6,"target":1,"value":218868},
-						{"source":5,"target":1,"value":196011},
-						{"source":4,"target":1,"value":111898},
-
-						{"source":6,"target":2,"value":177871},
-						{"source":5,"target":2,"value":155294},
-						{"source":4,"target":2,"value":115120},
-
-						{"source":6,"target":3,"value":131472},
-						{"source":5,"target":3,"value":113067},
-						{"source":4,"target":3,"value":112566}
-					]
-					};*/
-
 			var units = "Sales";
 
 			// set the dimensions and margins of the graph
@@ -332,7 +303,7 @@
 
 		function reformatSankeyData(arrayOfObj, DimensionOrdered){
 			var sankeyData = {"nodes" : [], "links" : []};
-			
+			// Create sankey nodes
 			arrayOfObj.forEach(function (d) {
 				for(var index = 0; index < DimensionOrdered.length; index++) {
 					var objElement = { "name": d[ DimensionOrdered[index] ], 
@@ -341,19 +312,11 @@
 					if( !containsObject(objElement, sankeyData.nodes) ) {
 						sankeyData.nodes.push(objElement);
 					}
-					//sankeyData.links.push({ "source": d['Product Category'],
-							 //"target": d.Region,
-							 //"value": +d['SUM(Sales)'] });
 				}
 			});
-			
-			arrayOfObj.forEach(function (d) {
-				//console.log('looping :', d);
-				//console.log('Dimension: ', DimensionOrdered[0]);
-				//console.log('Element', d[ DimensionOrdered[0] ]);
-				
-				//console.log('link pos testing: ', dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes) );
-				
+
+			// Create sankey links
+			arrayOfObj.forEach(function (d) {				
 				sankeyData.links.push({ "source": dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes),
 						 "target": dimension_element_inArray(DimensionOrdered[1], d[ DimensionOrdered[1] ], sankeyData.nodes),
 						 "value": +d['SUM(Sales)'] });				
@@ -363,6 +326,7 @@
 			return sankeyData;
 		}
 
+		// Helper function to find node position relative to element
 		function dimension_element_inArray(inputDimension, inputElement, inputArray) {
 			var position = -1;
 			for(var index = 0; index < inputArray.length; index++) {
