@@ -338,17 +338,9 @@
 					var objElement = { "name": d[ DimensionOrdered[index] ], 
 							   "dimension": DimensionOrdered[index] };
 					
-					//console.log('Loop testing: ', containsObject(objElement, sankeyData.nodes) );
 					if( !containsObject(objElement, sankeyData.nodes) ) {
 						sankeyData.nodes.push(objElement);
 					}
-					//console.log('Debug nodes: ', sankeyData.nodes);
-					//if( !sankeyData.nodes.includes({ "name": d[ DimensionOrdered[index] ], "dimension": DimensionOrdered[index] } )) {
-					/*sankeyData.nodes.push({ "name": d[ DimensionOrdered[index] ],
-							        "dimension": DimensionOrdered[index]
-							      });*/
-					//}
-					//sankeyData.nodes.push({ "dimension": DimensionOrdered[index] });
 					//sankeyData.links.push({ "source": d['Product Category'],
 							 //"target": d.Region,
 							 //"value": +d['SUM(Sales)'] });
@@ -358,7 +350,7 @@
 			console.log('Debug sankeyData: ', sankeyData);
 		}
 
-		// Helper function
+		// Helper function to check if object is already in an array
 		function containsObject(obj, list) {
 			var i;
 			for (i = 0; i < list.length; i++) {
@@ -369,6 +361,7 @@
 			return false;
 		}
 
+		// Helper function is two objects are equal
 		function isEquivalent(a, b) {
 			// Create arrays of property names
 			var aProps = Object.getOwnPropertyNames(a);
