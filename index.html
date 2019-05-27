@@ -357,15 +357,12 @@
 		}
 
 		// Helper function
-		/*function containsObject(obj, list) {
-			return list.some(elem => elem == obj);
-		}*/
 		function containsObject(obj, list) {
 			var i;
 			for (i = 0; i < list.length; i++) {
 				console.log('Looping list', i, ': ', list[i]);
 				console.log('obj ', obj);
-				if (list[i] == obj) {
+				if (isEquivalent(list[i], obj)) {
 					return true;
 				}
 			}
