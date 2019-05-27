@@ -360,6 +360,8 @@
 		function dimension_element_inArray(inputDimension, inputElement, inputArray) {
 			var position = -1;
 			for(var index = 0; index < inputArray; index++) {
+				console.log('inputArray[index].dimension :', inputArray[index].dimension);
+				console.log('inputArray[index].name : ', inputArray[index].name);
 				if(inputArray[index].dimension == inputDimension && inputArray[index].name == inputElement) {
 					position = index;
 				}
