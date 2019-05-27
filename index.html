@@ -321,14 +321,20 @@
 				var sourceNum = dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes);
 				var targetNum = dimension_element_inArray(DimensionOrdered[1], d[ DimensionOrdered[1] ], sankeyData.nodes);
 				
-				sankeyData.links.push({ "source": sourceNum,
+				/*sankeyData.links.push({ "source": sourceNum,
 							"target": targetNum,
-							"value": +d['SUM(Sales)'] });
-				/*if( source_target_inArray(sourceNum, targetNum, sankeyData.links) = -1 ){
+							"value": +d['SUM(Sales)'] });*/
+				if( source_target_inArray(sourceNum, targetNum, sankeyData.links) = -1 ){
 					sankeyData.links.push({ "source": sourceNum,
 								"target": targetNum,
 								"value": +d['SUM(Sales)'] });
-				}*/
+				} else {
+					for(var index = 0; index < sankeyData.links.length < index++) {
+						if( sankeyData.links[index].source == sourceNum && sankeyData.links[index].target == targetNum) {
+							sankeyData.links[index].value += d['SUM(Sales)'];
+						}
+					}
+				}
 				/*sankeyData.links.push({ "source": dimension_element_inArray(DimensionOrdered[0], d[ DimensionOrdered[0] ], sankeyData.nodes),
 						 "target": dimension_element_inArray(DimensionOrdered[1], d[ DimensionOrdered[1] ], sankeyData.nodes),
 						 "value": +d['SUM(Sales)'] });*/
