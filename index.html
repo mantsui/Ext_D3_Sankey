@@ -338,7 +338,7 @@
 					var objElement = { "name": d[ DimensionOrdered[index] ], 
 							   "dimension": DimensionOrdered[index] };
 					
-					console.log('Loop testing: ', sankeyData.nodes.indexOf(objElement) );
+					console.log('Loop testing: ', containsObject(objElement, sankeyData.nodes) );
 					sankeyData.nodes.push(objElement);
 					//if( !sankeyData.nodes.includes({ "name": d[ DimensionOrdered[index] ], "dimension": DimensionOrdered[index] } )) {
 					/*sankeyData.nodes.push({ "name": d[ DimensionOrdered[index] ],
@@ -353,6 +353,11 @@
 			});
 
 			console.log('Debug sankeyData: ', sankeyData);
+		}
+
+		// Helper function
+		function containsObject(obj, list) {
+			return list.some(elem => elem === obj);
 		}
 
 		// Established stepped color scale to help the color constrast of the D3 chart
