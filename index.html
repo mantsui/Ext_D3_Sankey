@@ -137,11 +137,12 @@
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			console.log('----- Display Tableau_Array_of_Objects -----', Tableau_Array_of_Objects);	// Debug output
 						
-			reformatSankeyData(Tableau_Array_of_Objects, Ordered_Dimensions);
+			var sankeyData = reformatSankeyData(Tableau_Array_of_Objects, Ordered_Dimensions);
+			// Reformat sankeyData for D3
 			
 			//Sunburst Code
 			//draw_D3(TableauTreeData, Ordered_Dimensions, uniqEleCount, colorScale);
-			draw_D3();
+			draw_D3(sankeyData);
 
 		});
 		}
@@ -165,11 +166,11 @@
 		
 		// Passing uniqueElementCount to help with the color contrast
 		//function draw_D3(data, DimensionList, uniqueElementCount, colorChromaticScale){
-		function draw_D3(){
+		function draw_D3(dataInput){
 			var divWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-			var dataInput = {
+			/*var dataInput = {
 					"nodes":[
 						{"name":"East"},
 						{"name":"West"},
@@ -196,7 +197,7 @@
 						{"source":5,"target":3,"value":113067},
 						{"source":4,"target":3,"value":112566}
 					]
-					};
+					};*/
 
 			var units = "Sales";
 
