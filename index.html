@@ -137,9 +137,9 @@
 			// Convert Tableau data into Array of Objects for D3 processing.
 			var Tableau_Array_of_Objects = ReduceToObjectTablulated(sumdata);
 			console.log('----- Display Tableau_Array_of_Objects -----', Tableau_Array_of_Objects);	// Debug output
-						
-			var sankeyData = reformatSankeyData(Tableau_Array_of_Objects, Ordered_Dimensions);
+
 			// Reformat sankeyData for D3
+			var sankeyData = reformatSankeyData(Tableau_Array_of_Objects, Ordered_Dimensions);			
 			console.log('Debug sankeyData: ', sankeyData);
 			
 			//Sunburst Code
@@ -175,7 +175,7 @@
 			var units = "Sales";
 
 			// set the dimensions and margins of the graph
-			var margin = {top: 10, right: 10, bottom: 10, left: 10},
+			var margin = {top: 10, right: 20, bottom: 10, left: 10},
 				width = divWidth - margin.left - margin.right,
 				height = divHeight - margin.top - margin.bottom;
 
