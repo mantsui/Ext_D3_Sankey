@@ -310,6 +310,7 @@
 				for(var index = 0; index < DimensionOrdered.length; index++) {
 					var objElement = { "name": d[ DimensionOrdered[index] ], 
 							   "dimension": DimensionOrdered[index] };
+					console.log('DimensionOrdered[index]: ', DimensionOrdered[index]);
 					console.log('d[ DimensionOrdered[index] ]: ', d[ DimensionOrdered[index] ]);
 					if( !containsObject(objElement, sankeyData.nodes) ) {
 						sankeyData.nodes.push(objElement);
