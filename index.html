@@ -305,8 +305,10 @@
 
 		function reformatSankeyData(arrayOfObj, DimensionOrdered){
 			var sankeyData = {"nodes" : [], "links" : []};
+			console.log('arrayOfObj: ', arrayOfObj);
 			// Create sankey nodes
 			arrayOfObj.forEach(function (d) {
+				console.log('Looping d: ', d);
 				for(var index = 0; index < DimensionOrdered.length; index++) {
 					var objElement = { "name": d[ DimensionOrdered[index] ], 
 							   "dimension": DimensionOrdered[index] };
