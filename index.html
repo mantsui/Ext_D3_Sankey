@@ -144,7 +144,7 @@
 			
 			//Sunburst Code
 			//draw_D3(TableauTreeData, Ordered_Dimensions, uniqEleCount, colorScale);
-			//draw_D3(sankeyData);
+			draw_D3(sankeyData);
 
 		});
 		}
@@ -305,15 +305,13 @@
 
 		function reformatSankeyData(arrayOfObj, DimensionOrdered){
 			var sankeyData = {"nodes" : [], "links" : []};
-			console.log('arrayOfObj: ', arrayOfObj);
+
 			// Create sankey nodes
 			arrayOfObj.forEach(function (d) {
-				console.log('Looping d: ', d);
 				for(var index = 0; index < DimensionOrdered.length; index++) {
 					var objElement = { "name": d[ DimensionOrdered[index] ], 
 							   "dimension": DimensionOrdered[index] };
-					console.log('DimensionOrdered[index]: ', DimensionOrdered[index]);
-					console.log('d[ DimensionOrdered[index] ]: ', d[ DimensionOrdered[index] ]);
+					
 					if( !containsObject(objElement, sankeyData.nodes) ) {
 						sankeyData.nodes.push(objElement);
 					}
