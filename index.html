@@ -3,7 +3,8 @@
 
 <head>
 	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<!--script src="https://code.jquery.com/jquery-3.2.1.min.js"></script-->
+	<script src="jquery-3.2.1.min.js"></script>
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
@@ -151,7 +152,7 @@
 		
 		// This opens the configuration window.
 		function configure() {
-			const popupUrl = `https://mantsui.github.io/Ext_D3_Treemap_ConfigDialog`;
+			const popupUrl = `https://mantsui.github.io/Ext_D3_Sankey/configdialog`;
 			let defaultPayload = "";
 			tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:700, width:500 }).then((closePayload) => {
 				getData_to_D3(); //0 3.30.19 test code
