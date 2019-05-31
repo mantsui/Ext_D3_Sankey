@@ -167,6 +167,9 @@
 			var divHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
 			var units = "Sales";
+			
+			var colorScale = dict_Settings['chartColorScale'];
+			var arrStepColors = steppedColorArray(colorScale, dataInput.nodes.length);
 
 			// set the dimensions and margins of the graph
 			var margin = {top: 10, right: 25, bottom: 25, left: 25},
@@ -176,7 +179,9 @@
 			// format variables
 			var formatNumber = d3.format(",.0f"),    // zero decimal places
 				format = function(d) { return formatNumber(d) + " " + units; },
-				color = d3.scaleOrdinal(d3.schemeSet3);
+				//color = d3.scaleOrdinal(d3.schemeSet3);
+			    	color = d3.scaleOrdinal(arrStepColors);
+
 
 			// append the svg object to the body of the page
 			var svg = d3.select("body").append("svg")
