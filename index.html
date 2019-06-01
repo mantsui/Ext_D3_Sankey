@@ -232,6 +232,7 @@
 						return d;
 					})
 					.on("start", function() {
+						console.log('Debug start d.name: ', d.name);
 						this.parentNode.appendChild(this);
 					})
 					.on("drag", dragmove));
@@ -259,7 +260,6 @@
 					.attr("text-anchor", "end")
 					.attr("transform", null)
 					.text(function(d) {
-						console.log('Debug filter d.name: ', d.name);
 						return d.name; })
 					.filter(function(d) { return d.x < width / 2; })
 					.attr("x", 6 + sankey.nodeWidth())
