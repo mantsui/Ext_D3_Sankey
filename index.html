@@ -535,8 +535,15 @@
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
 			});
-			
-			sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
+			if( Array.isArray(values) ) {
+				sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
+			}
+			else {
+				var arrayPlaceholder = [];
+				arrayPlaceholder.push(values);
+				console.log('Debug arrayPlaceholder: ', arrayPlaceholder);
+				sheetToFilter.applyFilterAsync(filterName, arrayPlaceholder, tableau.FilterUpdateType.Replace);
+			}
 		}
 		
 		function resetFilter(filterSheetName, arrDimensionList, arrTargetFilters) {
