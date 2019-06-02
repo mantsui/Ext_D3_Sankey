@@ -237,9 +237,10 @@
 					})
 					.on("drag", dragmove))
 					.on("mouseover", function(d) {
-						console.log('Debug mouseover d: ', d);
-						//setFilterTo(filterSheetName, filterName, values);
 						setFilterTo('Superstore Map', d.dimension, d.name); //Temp Code 06.02.19
+					})
+					.on("mouseout",  function(d) {
+						//reset filters //Temp Code 06.02.19
 					});
 
 			// add the rectangles for the nodes
