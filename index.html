@@ -530,6 +530,8 @@
 		// Filter the specified dimension to the specified value(s) for a target sheet in the dashboard
 		function setFilterTo(filterSheetName, filterName, values) {
 			//resetFilter(filterSheetName, filterName);
+			console.log('Debug filterName: ', filterName);
+			console.log('Debug values: ', values);
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
 			});
