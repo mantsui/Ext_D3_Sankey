@@ -63,6 +63,7 @@
 		// https://tableau.github.io/extensions-api/docs/interfaces/dashboard.html#addeventlistener
 		let unregisterSettingsEventListener = null;
 		var dict_Settings = [];
+		var Ordered_Dimensions = [];
 		
 		$(document).ready(function () {
 			// Added new code here to point to the configure function.
@@ -114,7 +115,6 @@
 		//matches[1] contains the value between the parentheses
 		var strDisplayName = regExpMatches[1];
 			
-		var Ordered_Dimensions = [];
 		for(var key in dict_Settings) {
 			var value = dict_Settings[key];
 
@@ -237,10 +237,10 @@
 					})
 					.on("drag", dragmove))
 					.on("mouseover", function(d) {
-						setFilterTo('Superstore Map', d.dimension, d.name); //Temp Code 06.02.19
+						setFilterTo('Superstore Map', d.dimension, [d.name]); //Temp Code 06.02.19
 					})
 					.on("mouseout",  function(d) {
-						//reset filters //Temp Code 06.02.19
+						resetFilter('Superstore Map', Ordered_Dimensions, d.dimension);  //Temp Code 06.02.19
 					});
 
 			// add the rectangles for the nodes
