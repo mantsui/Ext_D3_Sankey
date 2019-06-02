@@ -235,7 +235,10 @@
 						console.log('Debug start d.name: ', d.name);
 						this.parentNode.appendChild(this);
 					})
-					.on("drag", dragmove));
+					.on("drag", dragmove))
+					.on("mouseover", function(d) {
+						console.log('Debug mouseover d.name: ', d.name);
+					});
 
 			// add the rectangles for the nodes
 			node.append("rect")
