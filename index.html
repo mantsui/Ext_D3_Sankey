@@ -181,6 +181,18 @@
 				format = function(d) { return formatNumber(d) + " " + units; },
 			    	color = d3.scaleOrdinal(arrStepColors);
 
+			var filterSheet = '';
+			if( dict_Settings['FilterSheet'] != null) {
+				filterSheet = dict_Settings['FilterSheet'];
+			}
+
+			var Filter_Dimensions = [];
+			for(var key in dict_Settings) {
+				var value = dict_Settings[key];
+				if (key.startsWith('FilterFieldName_')){
+					Filter_Dimensions.push(value);
+				}
+			}
 
 			// append the svg object to the body of the page
 			var svg = d3.select("body").append("svg")
@@ -232,12 +244,11 @@
 						return d;
 					})
 					.on("start", function() {
-						console.log('Debug start d.name: ', d.name);
 						this.parentNode.appendChild(this);
 					})
 					.on("drag", dragmove))
 					.on("mouseover", function(d) {
-						setFilterTo('Superstore Map', d.dimension, [d.name]); //Temp Code 06.02.19
+						setFilterTo(filterSheet, d.dimension, [d.name]); //Temp Code 06.02.19
 					});
 					//.on("mouseout",  function(d) {
 						//resetFilter('Superstore Map', Ordered_Dimensions, d.dimension);  //Temp Code 06.02.19
