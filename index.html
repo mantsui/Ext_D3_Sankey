@@ -531,20 +531,10 @@
 		// Filter the specified dimension to the specified value(s) for a target sheet in the dashboard
 		function setFilterTo(filterSheetName, filterName, values) {
 			//resetFilter(filterSheetName, filterName);
-			console.log('Debug filterName: ', filterName);
-			console.log('Debug values: ', values);
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
 			});
-			if( Array.isArray(values) ) {
-				sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
-			}
-			else {
-				var arrayPlaceholder = [];
-				arrayPlaceholder.push(values);
-				console.log('Debug arrayPlaceholder: ', arrayPlaceholder);
-				sheetToFilter.applyFilterAsync(filterName, arrayPlaceholder, tableau.FilterUpdateType.Replace);
-			}
+			sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
 		}
 		
 		function resetFilter(filterSheetName, arrDimensionList, arrTargetFilters) {
