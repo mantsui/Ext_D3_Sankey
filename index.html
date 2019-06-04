@@ -14,7 +14,7 @@
 
 	<style>
 		.node rect {
-		  cursor: move;
+		  cursor: pointer; //move
 		  fill-opacity: .9;
 		  shape-rendering: crispEdges;
 		}
@@ -200,8 +200,7 @@
 				.attr("height", height + margin.top + margin.bottom)
 				.append("g")
 				.attr("transform", 
-					  "translate(" + margin.left + "," + margin.top + ")")
-				.style("cursor", "pointer");
+					  "translate(" + margin.left + "," + margin.top + ")");
 
 			// Set the sankey diagram properties
 			var sankey = d3.sankey()
