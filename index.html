@@ -211,7 +211,11 @@
 
 			var path = sankey.link();
 
-
+			// Define the div for the tooltip
+			var divTooltip = d3.select("body").append("div")	
+				.attr("class", "tooltip")				
+				.style("opacity", 0);
+			
 			sankey.nodes(dataInput.nodes)
 					.links(dataInput.links)
 					.layout(32);
@@ -248,6 +252,14 @@
 					})
 					.on("drag", dragmove))
 					.on("mouseover", function(d) {
+						
+						div.transition()		
+							.duration(200)		
+							.style("opacity", .9);		
+						div.html(d.name + "<br/>"  + d.name)	
+							.style("left", (d3.event.pageX) + "px")		
+							.style("top", (d3.event.pageY - 28) + "px");
+						
 						if( Filter_Dimensions.includes(d.dimension) ) {
 							setFilterTo(filterSheet, d.dimension, [d.name]);
 						}
