@@ -202,6 +202,8 @@
 				.attr("transform", 
 					  "translate(" + margin.left + "," + margin.top + ")");
 
+			$("*").css("cursor", "pointer");
+
 			// Set the sankey diagram properties
 			var sankey = d3.sankey()
 				.width(width)
