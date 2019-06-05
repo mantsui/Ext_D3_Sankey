@@ -561,7 +561,7 @@
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
 			});
-			sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
+			//sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
 		}
 		
 		function resetFilter(filterSheetName, arrDimensionList, arrTargetFilters) {
