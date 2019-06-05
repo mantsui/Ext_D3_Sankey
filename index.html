@@ -251,7 +251,8 @@
 						if( Filter_Dimensions.includes(d.dimension) ) {
 							setFilterTo(filterSheet, d.dimension, [d.name]);
 						}
-					});
+					})
+					.style("cursor", "pointer");
 					//.on("mouseout",  function(d) {
 						//resetFilter('Superstore Map', Ordered_Dimensions, d.dimension);  //Temp Code 06.02.19
 					//});
