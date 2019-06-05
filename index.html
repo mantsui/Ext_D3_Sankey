@@ -286,7 +286,7 @@
 					//});  Implicit D3 tooltip
 
 			// add in the title for the nodes
-			/*node.append("text")
+			node.append("text")
 					.attr("x", -6)
 					.attr("y", function(d) { return d.dy / 2; })
 					.attr("dy", ".35em")
@@ -296,7 +296,7 @@
 						return d.name; })
 					.filter(function(d) { return d.x < width / 2; })
 					.attr("x", 6 + sankey.nodeWidth())
-					.attr("text-anchor", "start");*/
+					.attr("text-anchor", "start");
 
 			// the function for moving the nodes
 			function dragmove(d) {
