@@ -251,7 +251,7 @@
 						this.parentNode.appendChild(this);
 					})
 					.on("drag", dragmove))
-					.on("mouseover", function(d) {
+					.then(on("mouseover", function(d) {
 						
 						divTooltip.transition()
 							.duration(200)
@@ -264,7 +264,7 @@
 						if( Filter_Dimensions.includes(d.dimension) ) {
 							setFilterTo(filterSheet, d.dimension, [d.name]);
 						}
-					});
+					}));
 					//.style("cursor", "pointer");
 					//.on("mouseout",  function(d) {
 						//resetFilter('Superstore Map', Ordered_Dimensions, d.dimension);  //Temp Code 06.02.19
@@ -561,8 +561,7 @@
 			var sheetToFilter = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) { 
 				return sheet.name === filterSheetName;
 			});
-			//sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
-			return sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
+			sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
 		}
 		
 		function resetFilter(filterSheetName, arrDimensionList, arrTargetFilters) {
