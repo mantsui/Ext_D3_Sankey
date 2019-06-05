@@ -562,6 +562,7 @@
 				return sheet.name === filterSheetName;
 			});
 			sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
+			return '';
 		}
 		
 		function resetFilter(filterSheetName, arrDimensionList, arrTargetFilters) {
