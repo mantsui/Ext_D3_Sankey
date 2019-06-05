@@ -253,10 +253,11 @@
 					.on("drag", dragmove))
 					.on("mouseover", function(d) {
 						
-						divTooltip.transition()		
-							.duration(200)		
-							.style("opacity", .9);		
-						divTooltip.html(d.name + "<br/>"  + d.name)	
+						divTooltip.transition()
+							.duration(200)
+							.style("opacity", .9);
+						//divTooltip.html(d.name + "<br/>"  + d.name)
+						divTooltip.html(d.name + "\n" + format(d.value)
 							.style("left", (d3.event.pageX) + "px")		
 							.style("top", (d3.event.pageY - 28) + "px");
 						
@@ -278,11 +279,11 @@
 					.style("fill", function(d) { 
 						return d.color = color(d.name.replace(/ .*/, "")); })
 					.style("stroke", function(d) { 
-						return d3.rgb(d.color).darker(2); })
-					.append("title")
-					.text(function(d) { 
-						return d.name + "\n" + format(d.value); 
-					});
+						return d3.rgb(d.color).darker(2); });
+					//.append("title")
+					//.text(function(d) { 
+					//	return d.name + "\n" + format(d.value); 
+					//});  Implicit D3 tooltip
 
 			// add in the title for the nodes
 			node.append("text")
