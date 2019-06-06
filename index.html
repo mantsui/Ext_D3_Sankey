@@ -33,6 +33,19 @@
 		.link:hover {
 		  stroke-opacity: .5;
 		}
+
+		div.tooltip {
+		  position: absolute;
+		  text-align: center;
+		  width: 60px;
+		  height: 28px;
+		  padding: 2px;
+		  font: 12px sans-serif;
+		  background: lightsteelblue;
+		  border: 0px;
+		  border-radius: 8px;	
+		  pointer-events: none;
+		}
 	</style>
 	
 </head>
@@ -256,7 +269,6 @@
 						divTooltip.transition()
 							.duration(200)
 							.style("opacity", .9);
-						//divTooltip.html(d.name + "<br/>"  + d.name)
 						divTooltip.html(d.name + "\n" + format(d.value) )
 							.style("left", (d3.event.pageX) + "px")		
 							.style("top", (d3.event.pageY - 28) + "px");
@@ -562,7 +574,6 @@
 				return sheet.name === filterSheetName;
 			});
 			sheetToFilter.applyFilterAsync(filterName, values, tableau.FilterUpdateType.Replace);
-			return '';
 		}
 		
 		function resetFilter(filterSheetName, arrDimensionList, arrTargetFilters) {
