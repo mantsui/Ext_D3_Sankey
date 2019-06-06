@@ -185,7 +185,7 @@
 			var arrStepColors = steppedColorArray(colorScale, dataInput.nodes.length);
 
 			// set the dimensions and margins of the graph
-			var margin = {top: 10, right: 25, bottom: 10, left: 25}, //{top: 10, right: 25, bottom: 25, left: 25}
+			var margin = {top: 10, right: 25, bottom: 10, left: 25},
 			    	horizontalPadding = 10,
 			        verticalPadding = 10,
 				width = divWidth - margin.left - margin.right - horizontalPadding,
@@ -271,7 +271,6 @@
 						divTooltip.transition()
 							.duration(200)
 							.style("opacity", .9);
-						//divTooltip.html(d.name + "\n" + format(d.value) )
 						divTooltip.html(d.name + "<br/>" + format(d.value) )
 							.style("left", (d3.event.pageX) + "px")		
 							.style("top", (d3.event.pageY - 28) + "px");
