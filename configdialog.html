@@ -331,6 +331,29 @@
 	    });
 	  }
 
+	  // Create list of dimensions to listen for filter change.
+	  function filterChangeColumnsUpdate() {
+	    // This gets the worksheet object from the drop down.
+	    var worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
+	    var worksheetName = $("#selectFilterChangeSheet").val();
+	    var worksheet = worksheets.find(function (sheet) {
+	      return sheet.name === worksheetName;
+	    });
+	    filterChangeSheetColumns = []; 	// Reset the array of field names
+		  
+	    // This now gets the summary data column names for our chosen data source.
+	    worksheet.getSummaryDataAsync({ maxRows: 1 }).then(function (sumdata) {
+	      clear_Prior_FilterChange_Dropdown_Lists(); 	// Clear prior dropdowns
+		    
+	      sumdata.columns.forEach(function (current_value) {
+		if(current_value.dataType == 'string' && current_value.fieldName != 'Measure Names') {
+			filterChangeSheetColumns.push(current_value.fieldName);
+		}
+	      });
+	      create_FilterChange_Dropdown_Lists(filterChangeSheetColumns);
+	    });
+	  }
+
 	  function closeDialog() {
 	    tableau.extensions.ui.closeDialog("10");
 	  }
@@ -448,6 +471,25 @@
 		}		
 	  }
 
+	  function create_FilterChange_Dropdown_Lists(arrayFieldList){
+		for (var index = 0; index < arrayFieldList.length; index++){
+			
+			var RowID = 'FilterChangeRowID_' + index;
+			var SecondDivID = 'FilterChangeSecondDivID_' + index;
+			var ListID = 'FilterChangeDropdown_' + index;
+			var SelectID = 'selectFilterChangeField_' + index;
+			//addElement(parentId, elementTag, elementClass, elementId, html)
+			addElement('selectFilterChangeContainer','div','row',RowID,'');
+			addElement(RowID,'div','col-md-6 col-xs-6',SecondDivID,'');
+			addElement(SecondDivID,'span','dropdown-label',ListID,'Optional: Filter Change Column #' + index);
+			addElement(ListID,'select','select',SelectID,'');
+			$('#' + SelectID).append('<option disabled selected="selected">-- None Selected --</option>');
+			arrayFieldList.forEach(function(currentValue){
+				$('#' + SelectID).append("<option value='" + currentValue + "'>" + currentValue + "</option>");
+			});
+		}		
+	  }
+
 	  function RestoreExtSettings(arrayFieldList, savedMeasure){
 		  console.log('Debug arrayFieldList: ', arrayFieldList);
 		  $("#selectMeasure").val(savedMeasure);
@@ -544,6 +586,26 @@
 			removeElement(ListID);
 			removeElement(SecondDivID);
 			removeElement(RowID);
+		}		
+	  }
+
+	  function clear_Prior_FilterChange_Dropdown_Lists(){
+		var SelectID = 'selectFilterChangeField_';
+		console.log('clear_Prior_FilterChange_Dropdown_Lists running...');
+		// Looping to look for html tags by specific element ID pattern.
+		for (var index = 0; ($('#' + SelectID + index).length > 0); index++){
+			var RowID = 'FilterChangeRowID_' + index;
+			var SecondDivID = 'FilterChangeSecondDivID_' + index;
+			var ListID = 'FilterChangeDropdown_' + index;
+			var FilterFieldID = 'FilterChangeFieldName_' + index;
+			if($('#' + SelectID + index).length > 0){
+				console.log('Debug clear_Prior_FilterChange_Dropdown_Lists: ', ('#' + SelectID + index) );
+				$("#" + SelectID + index).text("");	// Reset html tag and delete previous configuration.
+				removeElement(SelectID + index);	// Delete previous configuration.
+				removeElement(ListID);
+				removeElement(SecondDivID);
+				removeElement(RowID);
+			}
 		}		
 	  }
 
