@@ -192,6 +192,7 @@
 	  var worksheetColumns = [];
 	  var measureColumns = [];
 	  var dimensionColumns = [];
+	  var filterChangeSheetColumns = [];
 	  var filterSheetColumns = [];
 	  var PriorMeasureSelected = '';
 
@@ -200,7 +201,13 @@
 	    // drop down list.
 	    let dashboard = tableau.extensions.dashboardContent.dashboard;
 	    dashboard.worksheets.forEach(function (worksheet) {
+
+	      // Create dropdown list of sheets, selected sheet will send data to D3 for chart generation.
 	      $("#selectWorksheet").append("<option value='" + worksheet.name + "'>" + worksheet.name + "</option>");
+
+	      // Create dropdown list of sheets, selected sheet will re-draw the D3 chart based on specified filter change event(s).	
+	      $("#selectFilterChangeSheet").append("<option value='" + worksheet.name + "'>" + worksheet.name + "</option>");
+
 	      $("#selectFilterSheet").append("<option value='" + worksheet.name + "'>" + worksheet.name + "</option>");
 	    });
 
@@ -222,6 +229,10 @@
 	    // upon change. 
 	    $('#selectWorksheet').on('change', '', function (e) {
 	      columnsUpdate();
+	    });
+
+	    $('#selectFilterChangeSheet').on('change', '', function (e) {
+	      filterChangeColumnsUpdate();
 	    });
 
 	    $('#selectFilterSheet').on('change', '', function (e) {
