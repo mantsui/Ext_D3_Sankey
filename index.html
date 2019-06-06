@@ -186,8 +186,10 @@
 
 			// set the dimensions and margins of the graph
 			var margin = {top: 10, right: 40, bottom: 40, left: 40}, //{top: 10, right: 25, bottom: 25, left: 25}
-				width = divWidth - margin.left - margin.right,
-				height = divHeight - margin.top - margin.bottom;
+			    	horizontalPadding = 10,
+			        verticalPadding = 10,
+				width = divWidth - margin.left - margin.right - horizontalPadding,
+				height = divHeight - margin.top - margin.bottom - verticalPadding;
 
 			// format variables
 			var formatNumber = d3.format(",.0f"),    // zero decimal places
