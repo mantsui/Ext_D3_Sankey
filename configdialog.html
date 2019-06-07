@@ -63,15 +63,6 @@
 
     <div id="selectFilterChangeContainer" class="container"></div>
 
-    <div id="selectHighlightSheetDiv" class="row">
-        <div class="col-md-6 col-xs-6">
-             <span class="dropdown-label">Optional: Target Sheet to apply Highlight actions</span>
-                <select id="selectHighlightSheet" class="select">
-                    <option disabled selected="selected"> None Selected </option>
-                </select>
-        </div>
-    </div>
-
     <div id="selectFilterSheetDiv" class="row">
         <div class="col-md-6 col-xs-6">
              <span class="dropdown-label">Optional: Target Filter Sheet</span>
@@ -380,6 +371,18 @@
 		var SelectID = '#selectField_' + index;
 		var FieldID = 'FieldName_' + index;
 		tableau.extensions.settings.set(FieldID, $(SelectID).val());
+	    }
+
+	    if( $(selectFilterChangeSheet).val() != null ) {
+		    tableau.extensions.settings.set( "FilterChangeSheet", $(selectFilterChangeSheet).val() );
+	    }
+
+	    for (var index = 0; index < filterChangeSheetColumns.length; index++){
+		var SelectFilterChangeID = '#selectFilterChangeField_' + index;
+		var FilterChangeFieldID = 'FilterChangeFieldName_' + index;
+		if( $(SelectFilterChangeID).val() != null ) {
+			tableau.extensions.settings.set(FilterChangeFieldID, $(SelectFilterChangeID).val());
+		}
 	    }
 
 	    if( $(selectFilterSheet).val() != null ) {
