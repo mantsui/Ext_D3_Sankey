@@ -596,7 +596,8 @@
 			var FilterChange_Dimensions = [];
 			
 			// Once the settings change populate global variables from the settings.
-			worksheetName = tableau.extensions.settings.get("FilterChangeSheet");
+			//worksheetName = tableau.extensions.settings.get("FilterChangeSheet");
+			var worksheetName = dict_Settings['FilterChangeSheet'];
 			// If settings are changed we will unregister and re register the listener.
 			if (unregisterFilterEventListener != null) {
 				unregisterFilterEventListener();
