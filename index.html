@@ -276,20 +276,20 @@
 					})
 					.on("drag", dragmove))
 					.on("mouseover", function(d) {
-						
+
+						if( Filter_Dimensions.includes(d.dimension) ) {
+							setFilterTo(filterSheet, d.dimension, [d.name]);
+						}
+
 						divTooltip.transition()
 							//.duration(200)
 							.style("opacity", .9);
 						divTooltip.html(d.name + "<br/>" + format(d.value) )
 							.style("left", (d3.event.pageX) + "px")		
 							.style("top", (d3.event.pageY - 28) + "px");
-						
-						if( Filter_Dimensions.includes(d.dimension) ) {
-							setFilterTo(filterSheet, d.dimension, [d.name]);
-						}
 					}).on("mouseout",  function(d) {
 						divTooltip.transition()
-							.duration(200)
+							//.duration(200)
 							.style("opacity", 0.0);
 					});
 					//.on("mouseout",  function(d) {
