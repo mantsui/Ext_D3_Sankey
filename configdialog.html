@@ -361,6 +361,9 @@
 	  }
 
 	  function saveButton() {
+	    // clear pre-existing tableau extension settings.
+	    ClearSettings();
+
 	    // On clicking save, we save the following settings.
 	    tableau.extensions.settings.set("worksheet", $("#selectWorksheet").val());
 	    tableau.extensions.settings.set("chartColorScale", $("#selectColor").val());
@@ -408,6 +411,13 @@
 	    tableau.extensions.settings.saveAsync().then((currentSettings) => {
 	      tableau.extensions.ui.closeDialog("10");
 	    });
+	  }
+
+	  function ClearSettings() {
+		var TempTableauSettings = tableau.extensions.settings.getAll();
+		for(var key in TempTableauSettings) {
+			tableau.extensions.settings.erase(key);
+		}
 	  }
 
 	  function addElement(parentId, elementTag, elementClass, elementId, html) {
