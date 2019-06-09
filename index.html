@@ -98,7 +98,10 @@
 		});		
 		
 		function getData_to_D3() {
-
+			
+		dict_Settings = [];
+		Ordered_Dimensions = [];
+			
 		const worksheets=tableau.extensions.dashboardContent.dashboard.worksheets;
 		// We will try to read the worksheet from the settings, if this exists we will show
 		// the configuration screen, otherwise we will clear the table and destroy the
@@ -154,8 +157,6 @@
 			var sankeyData = reformatSankeyData(Tableau_Array_of_Objects, Ordered_Dimensions);			
 			console.log('Debug sankeyData: ', sankeyData);
 			
-			//Sunburst Code
-			//draw_D3(TableauTreeData, Ordered_Dimensions, uniqEleCount, colorScale);
 			draw_D3(sankeyData);
 
 		});
