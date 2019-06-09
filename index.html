@@ -278,7 +278,7 @@
 					.on("mouseover", function(d) {
 						
 						divTooltip.transition()
-							.duration(200)
+							//.duration(200)
 							.style("opacity", .9);
 						divTooltip.html(d.name + "<br/>" + format(d.value) )
 							.style("left", (d3.event.pageX) + "px")		
