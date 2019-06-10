@@ -187,6 +187,7 @@
 
 			var units = "Sales";
 			
+			var boolDollarSign = dict_Settings['isDollarSign'];
 			var colorScale = dict_Settings['chartColorScale'];
 			var arrStepColors = steppedColorArray(colorScale, dataInput.nodes.length);
 
@@ -199,7 +200,16 @@
 
 			// format variables
 			var formatNumber = d3.format(",.0f"),    // zero decimal places
-				format = function(d) { return formatNumber(d) + " " + units; },
+				format = function(d) { 
+					var outputString = '';
+					if(boolDollarSign = 'true'){
+						outputString = '$' + formatNumber(d) + ' ' + units;
+					} else {
+						outputString = formatNumber(d) + ' ' + units;
+					}
+					
+					return outputString;
+				},
 			    	color = d3.scaleOrdinal(arrStepColors);
 
 			var filterSheet = '';
