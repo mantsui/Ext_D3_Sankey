@@ -202,7 +202,7 @@
 			var formatNumber = d3.format(",.0f"),    // zero decimal places
 				format = function(d) { 
 					var outputString = '';
-					if(boolDollarSign = 'true'){
+					if(boolDollarSign == 'true'){
 						outputString = '$' + formatNumber(d) + ' ' + units;
 					} else {
 						outputString = formatNumber(d) + ' ' + units;
