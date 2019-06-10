@@ -634,8 +634,6 @@
 			if(worksheetName != null) {
 				// Add filter change event listener
 				unregisterFilterEventListener = worksheet.addEventListener(tableau.TableauEventType.FilterChanged, (filterEvent) => {
-					console.log('filterEvent.fieldName: ', filterEvent.fieldName);
-					console.log('FilterChange_Dimensions: ', FilterChange_Dimensions);
 					if (FilterChange_Dimensions.includes(filterEvent.fieldName)) {
 						getData_to_D3();
 					}
